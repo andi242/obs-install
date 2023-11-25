@@ -1,0 +1,32 @@
+[
+    {"requestType":"CreateProfile","requestData":{"profileName":"twitch"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[s] starting"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[s] stream"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[s] chat"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[s] pause"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[s] end"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"---- Nested Scenes ----"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[n] audio"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[n] video"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[n] cam"}},
+    {"requestType":"CreateScene","requestData":{"sceneName":"[n] background"}},
+
+    {"requestType":"CreateInput","requestData":{"sceneName":"[n] audio","inputName":"mikro","inputKind":"wasapi_input_capture","inputSettings":null,"sceneItemEnabled":true}},
+    {"requestType":"CreateSourceFilter","requestData":{"sourceName":"mikro","filterName":"Noise Suppression","filterKind":"noise_suppress_filter_v2","filterSettings":{"method":"dereverb_denoiser"},"filterIndex":"0"}},
+    {"requestType":"CreateSourceFilter","requestData":{"sourceName":"mikro","filterName":"Limiter","filterKind":"limiter_filter","filterSettings":{},"filterIndex":"1"}},
+    
+    {"requestType":"CreateInput","requestData":{"sceneName":"[n] video","inputName":"game","inputKind":"game_capture","inputSettings":null,"sceneItemEnabled":true}},
+
+    {"requestType":"CreateInput","requestData":{"sceneName":"[n] cam","inputName":"cam","inputKind":"dshow_input","inputSettings":null,"sceneItemEnabled":true}},
+    {"requestType":"CreateSourceFilter","requestData":{"sourceName":"cam","filterName":"NVIDIA Background Removal","filterKind":"nv_greenscreen_filter","filterSettings":{"processing_interval":2}}},
+    
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] chat","sourceName":"[n] cam","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] starting","sourceName":"[n] background","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] chat","sourceName":"[n] background","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] pause","sourceName":"[n] background","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] end","sourceName":"[n] background","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] chat","sourceName":"[n] audio","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}},
+    {"requestType":"CreateSceneItem","requestData":{"sceneName":"[s] stream","sourceName":"[n] audio","sceneItemEnabled":true,"sourceType":"OBS_SOURCE_TYPE_SCENE"}}
+]
